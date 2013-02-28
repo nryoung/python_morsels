@@ -22,7 +22,7 @@ class Worker(threading.Thread):
             item = self.in_queue.get()
 
             #here we should do some work with item
-            #and put your new data in the out queue
+            #and then put the new data in the out queue
             result = 'You should be doing work.'
             self.out_queue.put(result)
 
@@ -40,11 +40,11 @@ class Consumer(threading.Thread):
 
     def run(self):
         while True:
-            #grab the data for the out queue
+            #grab the data from the out queue
             item = self.out_queue.get()
 
             #here we should consume the item and
-            #turn it in to whatever ouput we desire
+            #turn it in to whatever output we desire
             result = 'This is your awesome output.'
 
             #signal that the consumer task is done
@@ -73,7 +73,7 @@ if __name__ == '__main__':
         t.daemon = True
         t.start()
 
-    #now block until all data has been processed
+    #now block until all data has been processed in
     #both queues
     in_queue.join()
     out_queue.join()
