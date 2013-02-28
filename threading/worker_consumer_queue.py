@@ -1,9 +1,16 @@
+"""
+Multi Threading example to show a common Worker/Consumer paradigm.
+"""
 import threading
 import Queue
 
 
 class Worker(threading.Thread):
-
+    """
+    Worker class that takes the raw data and performs some work on it.
+    Once this work is complete it puts the resultant data in to the out queue
+    for the Consumer class.
+    """
     def __init__(self, in_queue, out_queue):
         threading.Thread.__init__(self)
         self.in_queue = in_queue
@@ -23,6 +30,10 @@ class Worker(threading.Thread):
             self.in_queue.task_done()
 
 class Consumer(threading.Thread):
+    """
+    Consumer class that takes the data outputted by the Worker class and
+    consumes the data from the out queue and outputs a meaningful result.
+    """
     def __init__(self, out_queue):
         threading.Thread.__init__(self)
         self.out_queue = out_queue
