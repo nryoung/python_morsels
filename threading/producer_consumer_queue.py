@@ -57,15 +57,16 @@ if __name__ == '__main__':
     in_queue = Queue.Queue()
     out_queue = Queue.Queue()
 
-    #put the items in queue
-    for item in item_list:
-        in_queue.put(item)
-
     #spawn our producer threads and start work
     for i in xrange(len(item_list)):
        t = Producer(in_queue, out_queue)
        t.daemon = True
        t.start()
+
+    #put the items in queue
+    for item in item_list:
+        in_queue.put(item)
+
 
     #spawn our consumer threads and start consuming
     for i in xrange(len(item_list)):
