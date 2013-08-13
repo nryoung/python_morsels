@@ -9,7 +9,7 @@ def run():
 
     # add an optional and positional arguments to our instantiated parser
     parser.add_argument('square', type=int,
-               help='display a square of a given number')
+                        help='display a square of a given number')
     parser.add_argument('-v', '--verbosity', action='count', default=0,
                         help='increase output verbosity')
 
